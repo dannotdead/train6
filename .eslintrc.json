@@ -1,0 +1,32 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "indent": ["error", "tab"],
+		"quotes": ["error", "single"],
+		"eqeqeq": "warn",
+		"max-len": ["error", 100, { "ignoreUrls": true }],
+		"jsx-quotes": ["error", "prefer-single"],
+
+		// override configuration set by extending "eslint:recommended"
+		"no-empty": "warn",
+		"no-cond-assign": ["error", "always"],
+		"no-console": "warn"
+    }
+}
