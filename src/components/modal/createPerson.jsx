@@ -1,33 +1,10 @@
 import React, { useState } from 'react';
+import { postData } from '../../utils/requests';
 import './createPerson.scss';
 
-const createPerson = ({ id, handleModal, getData }) => {
+const createPerson = ({ handleModal, setError, setPersons }) => {
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
-
-	const postData = async () => {
-		try {
-			const data = {
-				id,
-				firstName,
-				lastName,
-			};
-			const response = await fetch('http://localhost:8000/persons/', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(data),
-			});
-			console.log(response);
-			if (response.ok) {
-				handleModal();
-				getData();
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
 
 	return (
 		<div className='modal'>
@@ -49,7 +26,13 @@ const createPerson = ({ id, handleModal, getData }) => {
 					/>
 				</div>
 				<div className='modal__content__footer'>
-					<button onClick={postData}>Сохранить</button>
+					<button
+						onClick={() => postData(
+							firstName, lastName, handleModal, setError, setPersons
+						)}
+					>
+						Сохранить
+					</button>
 				</div>
 			</div>
 		</div>

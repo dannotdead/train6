@@ -6,6 +6,7 @@ import DeleteIcon from '../assets/images/DeleteIcon.svg';
 import CreatePerson from './modal/createPerson';
 import EditPerson from './modal/editPerson';
 import DeletePerson from './modal/deletePerson';
+import { getData } from '../utils/requests';
 
 const App = () => {
 	const [persons, setPersons] = useState([]);
@@ -17,18 +18,6 @@ const App = () => {
 	const [personId, setPersonId] = useState(0);
 	const [personFirstName, setPersonFirstName] = useState('');
 	const [personLastName, setPersonLastName] = useState('');
-
-	const getData = async () => {
-		try {
-			const response = await fetch('http://localhost:8000/api/v1/persons/');
-			const data = await response.json();
-			if (response.status === 404)
-				setError('Не существует такого адреса. Ошибка ' + response.status);
-			if (response.ok) setPersons(data);
-		} catch (error) {
-			console.log(error);
-		}
-	};
 
 	const handleModalCreatePerson = () => {
 		if (!showModalCreatePerson) setShowModalCreatePerson(true);
@@ -54,7 +43,7 @@ const App = () => {
 	};
 
 	useEffect(() => {
-		getData();
+		getData(setError, setPersons);
 	}, []);
 
 	useEffect(() => {
@@ -79,22 +68,16 @@ const App = () => {
 							<img
 								src={EditIcon}
 								alt=''
-								onClick={() => 
-									handleModalEditPerson(
-										person.id, 
-										person.firstName, 
-										person.lastName
-									)}
+								onClick={() => handleModalEditPerson(
+									person.id, person.firstName, person.lastName)}
 							/>
 							<img
 								src={DeleteIcon}
 								alt=''
 								onClick={() =>
 									handleModalDeletePerson(
-										person.id, 
-										person.firstName, 
-										person.lastName
-									)}
+										person.id, person.firstName, person.lastName)
+								}
 							/>
 						</div>
 					</div>
@@ -107,9 +90,9 @@ const App = () => {
 			</button>
 			{showModalCreatePerson && (
 				<CreatePerson
-					id={persons.length + 1}
 					handleModal={handleModalCreatePerson}
-					getData={getData}
+					setError={setError}
+					setPersons={setPersons}
 				/>
 			)}
 			{showModalEditPerson && (
@@ -118,7 +101,8 @@ const App = () => {
 					firstNameInitial={personFirstName}
 					lastNameInitial={personLastName}
 					handleModal={handleModalEditPerson}
-					getData={getData}
+					setError={setError}
+					setPersons={setPersons}
 				/>
 			)}
 			{showModalDeletePerson && (
@@ -127,7 +111,8 @@ const App = () => {
 					firstNameInitial={personFirstName}
 					lastNameInitial={personLastName}
 					handleModal={handleModalDeletePerson}
-					getData={getData}
+					setError={setError}
+					setPersons={setPersons}
 				/>
 			)}
 		</div>

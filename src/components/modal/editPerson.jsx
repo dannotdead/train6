@@ -1,32 +1,17 @@
 import React, { useState } from 'react';
+import { putData } from '../../utils/requests';
 import './editPerson.scss';
 
-const editPerson = ({ id, firstNameInitial, lastNameInitial, handleModal, getData }) => {
+const editPerson = ({
+	id,
+	firstNameInitial,
+	lastNameInitial,
+	handleModal,
+	setError,
+	setPersons,
+}) => {
 	const [firstName, setFirstName] = useState(firstNameInitial);
 	const [lastName, setLastName] = useState(lastNameInitial);
-
-	const putData = async () => {
-		try {
-			const data = {
-				firstName,
-				lastName,
-			};
-			const response = await fetch(`http://localhost:8000/persons/${id}/`, {
-				method: 'PUT',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(data),
-			});
-			console.log(response);
-			if (response.ok) {
-				handleModal();
-				getData();
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
 
 	return (
 		<div className='modal'>
@@ -48,7 +33,13 @@ const editPerson = ({ id, firstNameInitial, lastNameInitial, handleModal, getDat
 					/>
 				</div>
 				<div className='modal__content__footer'>
-					<button onClick={putData}>Сохранить</button>
+					<button
+						onClick={() => putData(
+							id, firstName, lastName, handleModal, setError, setPersons
+						)}
+					>
+						Сохранить
+					</button>
 				</div>
 			</div>
 		</div>

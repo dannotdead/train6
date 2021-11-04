@@ -1,24 +1,15 @@
 import React from 'react';
+import { deleteData } from '../../utils/requests';
 import './deletePerson.scss';
 
-const deletePerson = ({ id, firstNameInitial, lastNameInitial, handleModal, getData }) => {
-	const deleteData = async () => {
-		try {
-			const response = await fetch(`http://localhost:8000/persons/${id}`, {
-				method: 'DELETE',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			});
-			if (response.ok) {
-				handleModal();
-				getData();
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
+const deletePerson = ({
+	id,
+	firstNameInitial,
+	lastNameInitial,
+	handleModal,
+	setError,
+	setPersons,
+}) => {
 	return (
 		<div className='modal'>
 			<div className='modal__content'>
@@ -31,7 +22,9 @@ const deletePerson = ({ id, firstNameInitial, lastNameInitial, handleModal, getD
 					<input readOnly value={lastNameInitial} />
 				</div>
 				<div className='modal__content__footer'>
-					<button onClick={deleteData}>Удалить</button>
+					<button onClick={() => deleteData(
+						id, handleModal, setError, setPersons
+					)}>Удалить</button>
 				</div>
 			</div>
 		</div>
