@@ -28,40 +28,9 @@ body {
 	width: 75vw;
 	margin-top: 20px;
 
-	&__header {
-		display: grid;
-		grid-template-columns: 1fr 2fr 2fr 4fr;
-		padding: 20px 0 20px 20px;
-		background-color: gainsboro;
-	}
+	
 }
 
-.persons-list {
-	display: grid;
-	grid-template-columns: 1fr 2fr 2fr 4fr;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	padding: 20px;
-	border-bottom: 2px solid gainsboro;
-
-	&__profile-icon {
-		border-radius: 50%;
-		width: 30px;
-		height: 30px;
-	}
-
-	&__edit-del-btn {
-		justify-self: end;
-		border: 1px solid gainsboro;
-		border-radius: 5px;
-
-		img {
-			width: 30px;
-			height: 30px;
-		}
-	}
-}
 
 .create-person {
 	outline: none;
