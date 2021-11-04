@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './App.scss';
-import ProfileIcon from './assets/images/ProfileAvatarMale.svg';
-import EditIcon from './assets/images/EditIcon.svg';
-import DeleteIcon from './assets/images/DeleteIcon.svg';
+import ProfileIcon from '../assets/images/ProfileAvatarMale.svg';
+import EditIcon from '../assets/images/EditIcon.svg';
+import DeleteIcon from '../assets/images/DeleteIcon.svg';
+import CreatePerson from './modal/createPerson';
 
 const App = () => {
 	const [persons, setPersons] = useState([]);
 	const [error, setError] = useState('');
+	const [showModalCreatePerson, setShowModalCreatePerson] = useState(false);
 
 	const getData = async () => {
 		try {
@@ -18,6 +20,11 @@ const App = () => {
 		} catch (error) {
 			console.log(error);
 		}
+	};
+
+	const handleModalCreatePerson = () => {
+		if (!showModalCreatePerson) setShowModalCreatePerson(true);
+		else setShowModalCreatePerson(false);
 	};
 
 	useEffect(() => {
@@ -51,7 +58,16 @@ const App = () => {
 			) : (
 				<div>{error}</div>
 			)}
-			<button className='create-person'>Добавить сотрудника</button>
+			<button className='create-person' onClick={handleModalCreatePerson}>
+				Добавить сотрудника
+			</button>
+			{showModalCreatePerson && (
+				<CreatePerson
+					id={persons.length + 1}
+					handleModal={handleModalCreatePerson}
+					getData={getData}
+				/>
+			)}
 		</div>
 	);
 };
