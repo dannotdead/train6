@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import './createPerson.scss';
+import './editPerson.scss';
 
-const createPerson = ({ id, handleModal, getData }) => {
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
+const editPerson = ({ id, firstNameInitial, lastNameInitial, handleModal, getData }) => {
+	const [firstName, setFirstName] = useState(firstNameInitial);
+	const [lastName, setLastName] = useState(lastNameInitial);
 
-	const postData = async () => {
+	const putData = async () => {
 		try {
 			const data = {
-				id,
 				firstName,
 				lastName,
 			};
-			const response = await fetch('http://localhost:8000/persons/', {
-				method: 'POST',
+			const response = await fetch(`http://localhost:8000/persons/${id}/`, {
+				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
 				},
@@ -33,7 +32,7 @@ const createPerson = ({ id, handleModal, getData }) => {
 		<div className='modal'>
 			<div className='modal__content'>
 				<div className='modal__content__header'>
-					<span>Создание сотрудника</span>
+					<span>Редактирование сотрудника</span>
 				</div>
 				<div className='modal__content__body'>
 					<button onClick={handleModal}>Назад к списку</button>
@@ -49,11 +48,11 @@ const createPerson = ({ id, handleModal, getData }) => {
 					/>
 				</div>
 				<div className='modal__content__footer'>
-					<button onClick={postData}>Сохранить</button>
+					<button onClick={putData}>Сохранить</button>
 				</div>
 			</div>
 		</div>
 	);
 };
 
-export default createPerson;
+export default editPerson;
