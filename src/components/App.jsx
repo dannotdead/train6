@@ -5,12 +5,14 @@ import EditIcon from '../assets/images/EditIcon.svg';
 import DeleteIcon from '../assets/images/DeleteIcon.svg';
 import CreatePerson from './modal/createPerson';
 import EditPerson from './modal/editPerson';
+import DeletePerson from './modal/deletePerson';
 
 const App = () => {
 	const [persons, setPersons] = useState([]);
 	const [error, setError] = useState('');
 	const [showModalCreatePerson, setShowModalCreatePerson] = useState(false);
 	const [showModalEditPerson, setShowModalEditPerson] = useState(false);
+	const [showModalDeletePerson, setShowModalDeletePerson] = useState(false);
 
 	const [personId, setPersonId] = useState(0);
 	const [personFirstName, setPersonFirstName] = useState('');
@@ -37,10 +39,18 @@ const App = () => {
 		setPersonId(id);
 		setPersonFirstName(firstName);
 		setPersonLastName(lastName);
-		console.log(id, firstName, lastName);
 		if (!showModalEditPerson) {
 			setShowModalEditPerson(true);
 		} else setShowModalEditPerson(false);
+	};
+
+	const handleModalDeletePerson = (id, firstName, lastName) => {
+		setPersonId(id);
+		setPersonFirstName(firstName);
+		setPersonLastName(lastName);
+		if (!showModalDeletePerson) {
+			setShowModalDeletePerson(true);
+		} else setShowModalDeletePerson(false);
 	};
 
 	useEffect(() => {
@@ -69,10 +79,23 @@ const App = () => {
 							<img
 								src={EditIcon}
 								alt=''
-								onClick={() => handleModalEditPerson(
-									person.id, person.firstName, person.lastName)}
+								onClick={() => 
+									handleModalEditPerson(
+										person.id, 
+										person.firstName, 
+										person.lastName
+									)}
 							/>
-							<img src={DeleteIcon} alt='' />
+							<img
+								src={DeleteIcon}
+								alt=''
+								onClick={() =>
+									handleModalDeletePerson(
+										person.id, 
+										person.firstName, 
+										person.lastName
+									)}
+							/>
 						</div>
 					</div>
 				))
@@ -95,6 +118,15 @@ const App = () => {
 					firstNameInitial={personFirstName}
 					lastNameInitial={personLastName}
 					handleModal={handleModalEditPerson}
+					getData={getData}
+				/>
+			)}
+			{showModalDeletePerson && (
+				<DeletePerson
+					id={personId}
+					firstNameInitial={personFirstName}
+					lastNameInitial={personLastName}
+					handleModal={handleModalDeletePerson}
 					getData={getData}
 				/>
 			)}
