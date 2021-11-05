@@ -1,8 +1,8 @@
 import React from 'react';
-import ProfileIcon from '../assets/images/ProfileAvatarMale.svg';
-import EditIcon from '../assets/images/EditIcon.svg';
-import DeleteIcon from '../assets/images/DeleteIcon.svg';
-import './PersonsList.scss';
+import ProfileIcon from '../../assets/images/ProfileAvatarMale.svg';
+import EditIcon from '../../assets/images/EditIcon.svg';
+import DeleteIcon from '../../assets/images/DeleteIcon.svg';
+import './styles.scss';
 
 const personsList = ({
 	id,

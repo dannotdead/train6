@@ -27,10 +27,7 @@ body {
 	flex-direction: column;
 	width: 75vw;
 	margin-top: 20px;
-
-	
 }
-
 
 .create-person {
 	outline: none;
@@ -43,4 +40,19 @@ body {
 	margin-top: 10px;
 	width: 150px;
 	text-align: center;
+}
+
+.error {
+	position: absolute;
+
+	left: 20px;
+	bottom: 20px;
+
+	padding: 10px;
+	margin-right: 20px;
+
+	background: red;
+	color: white;
+
+	border-radius: 12px;
 }

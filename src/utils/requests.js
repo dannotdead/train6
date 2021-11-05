@@ -1,11 +1,29 @@
+/* eslint-disable indent */
+
+const checkResponseStatus = (status, setError) => {
+	switch (status) {
+		case 404:
+			setError('Сущность не найдена в системе. Статус код: ' + status);
+			break;
+		case 400:
+			setError('Неверный запрос. Статус код: ' + status);
+			break;
+		case 500:
+			setError('Ошибка сервера. Статус код: ' + status);
+			break;
+	}
+};
+
 export const getData = async (setError, setPersons) => {
 	try {
 		const response = await fetch('http://localhost:8000/api/v1/persons/');
 		const data = await response.json();
-		if (response.status === 404) {
-			setError('Не существует такого адреса. Ошибка ' + response.status);
+
+		checkResponseStatus(response.status, setError);
+		if (response.ok) {
+			setPersons(data);
+			setError('');
 		}
-		if (response.ok) setPersons(data);
 	} catch (error) {
 		console.log(error);
 	}
@@ -17,7 +35,7 @@ export const postData = async (firstName, lastName, handleModal, setError, setPe
 			firstName,
 			lastName,
 		};
-		console.log(data);
+
 		const response = await fetch('http://localhost:8000/persons/', {
 			method: 'POST',
 			headers: {
@@ -25,13 +43,12 @@ export const postData = async (firstName, lastName, handleModal, setError, setPe
 			},
 			body: JSON.stringify(data),
 		});
-		console.log(response);
+
+		checkResponseStatus(response.status, setError);
 		if (response.ok) {
 			handleModal();
 			getData(setError, setPersons);
-		}
-		if (response.status === 500) {
-			setError('Ошибка сервера ' + response.status);
+			setError('');
 		}
 	} catch (error) {
 		console.log(error);
@@ -44,6 +61,7 @@ export const putData = async (id, firstName, lastName, handleModal, setError, se
 			firstName,
 			lastName,
 		};
+
 		const response = await fetch(`http://localhost:8000/persons/${id}/`, {
 			method: 'PUT',
 			headers: {
@@ -51,10 +69,12 @@ export const putData = async (id, firstName, lastName, handleModal, setError, se
 			},
 			body: JSON.stringify(data),
 		});
-		console.log(response);
+
+		checkResponseStatus(response.status, setError);
 		if (response.ok) {
 			handleModal();
 			getData(setError, setPersons);
+			setError('');
 		}
 	} catch (error) {
 		console.log(error);
@@ -69,9 +89,12 @@ export const deleteData = async (id, handleModal, setError, setPersons) => {
 				'Content-Type': 'application/json',
 			},
 		});
+
+		checkResponseStatus(response.status, setError);
 		if (response.ok) {
 			handleModal();
 			getData(setError, setPersons);
+			setError('');
 		}
 	} catch (error) {
 		console.log(error);

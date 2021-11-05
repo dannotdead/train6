@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import './App.scss';
 import Modal from './modal/modal';
 import { getData } from '../utils/requests';
-import PersonsList from './PersonsList';
-import Header from './Header';
+import PersonsList from './PersonsList/PersonsList';
+import Header from './Header/Header';
 
 const App = () => {
 	const [persons, setPersons] = useState([]);
 	const [error, setError] = useState('');
+	
 	const [showModalCreatePerson, setShowModalCreatePerson] = useState(false);
 	const [showModalEditPerson, setShowModalEditPerson] = useState(false);
 	const [showModalDeletePerson, setShowModalDeletePerson] = useState(false);
@@ -44,11 +45,6 @@ const App = () => {
 		getData(setError, setPersons);
 	}, []);
 
-	useEffect(() => {
-		console.log(persons);
-		console.log(error);
-	}, [persons]);
-
 	return (
 		<div className='container'>
 			<Header />
@@ -64,7 +60,7 @@ const App = () => {
 					/>
 				))
 			) : (
-				<div>{error}</div>
+				<div className='error'>{error}</div>
 			)}
 			<button className='create-person' onClick={handleModalCreatePerson}>
 				Добавить сотрудника
@@ -79,6 +75,7 @@ const App = () => {
 						handleModalEditPerson, 
 						handleModalDeletePerson
 					]}
+					error={error}
 					setError={setError}
 					setPersons={setPersons}
 					showModal={[showModalCreatePerson, showModalEditPerson, showModalDeletePerson]}

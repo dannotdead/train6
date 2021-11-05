@@ -77,4 +77,19 @@
 			}
 		}
 	}
+
+	&__error {
+		position: absolute;
+
+		left: 20px;
+		bottom: 20px;
+
+		padding: 10px;
+		margin-right: 20px;
+
+		background: red;
+		color: white;
+
+		border-radius: 12px;
+	}
 }

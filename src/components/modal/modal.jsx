@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { postData, putData, deleteData } from '../../utils/requests';
-import './modal.scss';
+import './styles.scss';
 
 const modal = ({
 	id,
 	firstNameInitial,
 	lastNameInitial,
 	handleModal,
+	error,
 	setError,
 	setPersons,
 	showModal,
@@ -61,6 +62,7 @@ const modal = ({
 					</button>
 				</div>
 			</div>
+			{error && <div className='modal__error'>{error}</div>}
 		</div>
 	);
 };
