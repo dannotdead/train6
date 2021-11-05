@@ -1,44 +1,44 @@
 {
   "persons": [
     {
-      "firstName": "Jhonasdf",
-      "lastName": "Boo",
+      "firstName": "Karim",
+      "lastName": "Abdul-Jabbar",
       "id": 1
     },
     {
-      "firstName": "Michaelaerf",
-      "lastName": "Robinson",
+      "firstName": "Ray",
+      "lastName": "Allen",
       "id": 2
     },
     {
-      "id": 3,
-      "firstName": "Alexander",
-      "lastName": "Robson"
+      "firstName": "Carmelo",
+      "lastName": "Anthony",
+      "id": 3
     },
     {
-      "firstName": "asdfqwer",
-      "lastName": "asdfqwer",
+      "firstName": "Charles",
+      "lastName": "Barkley",
+      "id": 4
+    },
+    {
+      "firstName": "Kobe",
+      "lastName": "Bryant",
+      "id": 5
+    },
+    {
+      "firstName": "Larry",
+      "lastName": "Bird",
       "id": 6
     },
     {
-      "firstName": "treyqw",
-      "lastName": "erqwer",
+      "firstName": "Stephen",
+      "lastName": "Curry",
+      "id": 7
+    },
+    {
+      "firstName": "Lebron",
+      "lastName": "James",
       "id": 8
-    },
-    {
-      "firstName": "asdf",
-      "lastName": "asdfasdf",
-      "id": 9
-    },
-    {
-      "firstName": "awe123",
-      "lastName": "123qe",
-      "id": 10
-    },
-    {
-      "firstName": "фыва",
-      "lastName": "фывафыва",
-      "id": 11
     }
   ]
 }

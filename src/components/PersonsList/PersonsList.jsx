@@ -14,8 +14,8 @@ const personsList = ({
 	return (
 		<div key={id} className='persons-list'>
 			<img src={ProfileIcon} alt='' className='persons-list__profile-icon' />
-			<p>{firstName}</p>
-			<p>{lastName}</p>
+			<p className='persons-list__first-name'>{firstName}</p>
+			<p className='persons-list__last-name'>{lastName}</p>
 			<div className='persons-list__edit-del-btn'>
 				<img 
 					src={EditIcon} 

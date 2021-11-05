@@ -17,8 +17,43 @@
 		justify-self: end;
 
 		img {
+			cursor: pointer;
 			width: 30px;
 			height: 30px;
+		}
+	}
+}
+
+@media screen and (max-width: 620px) {
+	.persons-list {
+		display: grid;
+		grid-template-columns: 0.3fr 1fr 1fr 1fr;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+		padding: 5px;
+		border-bottom: 2px solid gainsboro;
+
+		&__profile-icon {
+			border-radius: 50%;
+			width: 25px;
+			height: 25px;
+		}
+
+		&__edit-del-btn {
+			justify-self: end;
+
+			img {
+				cursor: pointer;
+				width: 25px;
+				height: 25px;
+			}
+		}
+
+		&__first-name,
+		&__last-name {
+			overflow: hidden;
+			padding: 0 5px 0 5px;
 		}
 	}
 }

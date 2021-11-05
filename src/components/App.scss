@@ -56,3 +56,22 @@ body {
 
 	border-radius: 12px;
 }
+
+@media screen and (max-width: 620px) {
+	.container {
+		width: 90vw;
+	}
+
+	.create-person {
+		outline: none;
+		border: none;
+		background: cornflowerblue;
+		border-radius: 14px;
+		cursor: pointer;
+		color: white;
+		padding: 5px 5px;
+		margin-top: 10px;
+		width: 150px;
+		text-align: center;
+	}
+}

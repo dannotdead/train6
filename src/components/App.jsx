@@ -60,7 +60,7 @@ const App = () => {
 					/>
 				))
 			) : (
-				<div className='error'>{error}</div>
+				error && <div className='error'>{error}</div>
 			)}
 			<button className='create-person' onClick={handleModalCreatePerson}>
 				Добавить сотрудника
